@@ -37,6 +37,20 @@ Le pipeline devra normaliser les sources vers un schéma commun :
 
 Les champs `label` et `label_source` doivent rester nuls lorsqu’aucun label documenté n’est disponible. La réputation d’un média ou le score d’un post ne constitue pas automatiquement un label de vérité.
 
+## Objectif d’analyse multimodale
+
+Le pipeline doit analyser séparément le texte, l’image et leur relation. Une publication dont le texte est correct mais dont l’image est fausse ou sortie de son contexte doit rester dans le corpus, avec une annotation adaptée.
+
+| Élément analysé | Exemples de valeurs |
+|---|---|
+| Véracité du texte | `real`, `fake`, `unknown` |
+| Authenticité de l’image | `authentic`, `manipulated`, `ai_generated`, `unknown` |
+| Contexte de l’image | `relevant`, `out_of_context`, `unknown` |
+| Cohérence texte-image | `coherent`, `incoherent`, `unknown` |
+| Classification globale | `reliable`, `misleading_multimodal`, `fake`, `unknown` |
+
+Cette séparation permet de distinguer une fausse affirmation accompagnée d’une image réelle, un texte correct illustré par une image trompeuse et une image authentique utilisée pour un autre événement.
+
 ## 3. Critères de qualification
 
 Chaque source est évaluée selon les critères suivants :
